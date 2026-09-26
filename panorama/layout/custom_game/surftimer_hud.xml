@@ -1,0 +1,217 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/surftimer_hud.css" />
+	</styles>
+
+	<!--
+		Generic, server-driven slots. custom_hud_layout labels only take plain text, so every piece of
+		text is its own label. The plugin sets each label's text (dialog variable named like its id) and
+		toggles the classes documented in surftimer_hud.css, so content and styling change without
+		republishing this addon. Ids and sizes must match src/ST-Player/CustomHud.cs.
+		Generated - regenerate instead of editing by hand (see hud_addon/README.md).
+	-->
+	<Panel class="SurfTimerHud" hittest="false">
+		<Panel id="st_top" class="Slot SlotTop hidden" hittest="false">
+			<Panel id="st_top_0" class="Row hidden" hittest="false">
+				<Label id="st_top_0_0" class="Seg hidden" hittest="false" text="{s:st_top_0_0}" />
+				<Label id="st_top_0_1" class="Seg hidden" hittest="false" text="{s:st_top_0_1}" />
+				<Label id="st_top_0_2" class="Seg hidden" hittest="false" text="{s:st_top_0_2}" />
+				<Label id="st_top_0_3" class="Seg hidden" hittest="false" text="{s:st_top_0_3}" />
+				<Label id="st_top_0_4" class="Seg hidden" hittest="false" text="{s:st_top_0_4}" />
+				<Label id="st_top_0_5" class="Seg hidden" hittest="false" text="{s:st_top_0_5}" />
+				<Label id="st_top_0_6" class="Seg hidden" hittest="false" text="{s:st_top_0_6}" />
+				<Label id="st_top_0_7" class="Seg hidden" hittest="false" text="{s:st_top_0_7}" />
+			</Panel>
+			<Panel id="st_top_1" class="Row hidden" hittest="false">
+				<Label id="st_top_1_0" class="Seg hidden" hittest="false" text="{s:st_top_1_0}" />
+				<Label id="st_top_1_1" class="Seg hidden" hittest="false" text="{s:st_top_1_1}" />
+				<Label id="st_top_1_2" class="Seg hidden" hittest="false" text="{s:st_top_1_2}" />
+				<Label id="st_top_1_3" class="Seg hidden" hittest="false" text="{s:st_top_1_3}" />
+				<Label id="st_top_1_4" class="Seg hidden" hittest="false" text="{s:st_top_1_4}" />
+				<Label id="st_top_1_5" class="Seg hidden" hittest="false" text="{s:st_top_1_5}" />
+				<Label id="st_top_1_6" class="Seg hidden" hittest="false" text="{s:st_top_1_6}" />
+				<Label id="st_top_1_7" class="Seg hidden" hittest="false" text="{s:st_top_1_7}" />
+			</Panel>
+		</Panel>
+
+		<Panel id="st_center" class="Slot SlotCenter hidden" hittest="false">
+			<Panel id="st_fields_0" class="Fields hidden" hittest="false">
+				<Panel id="st_field_0_0" class="Field hidden" hittest="false">
+					<Label id="st_field_0_0_lbl" class="Seg lbl FieldLabel" hittest="false" text="{s:st_field_0_0_lbl}" />
+					<Panel id="st_field_0_0_row" class="FieldRow" hittest="false">
+						<Label id="st_field_0_0_0" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_0_0}" />
+						<Label id="st_field_0_0_1" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_0_1}" />
+						<Label id="st_field_0_0_2" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_0_2}" />
+						<Label id="st_field_0_0_3" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_0_3}" />
+						<Label id="st_field_0_0_4" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_0_4}" />
+						<Label id="st_field_0_0_5" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_0_5}" />
+					</Panel>
+				</Panel>
+				<Panel id="st_field_0_1" class="Field hidden" hittest="false">
+					<Label id="st_field_0_1_lbl" class="Seg lbl FieldLabel" hittest="false" text="{s:st_field_0_1_lbl}" />
+					<Panel id="st_field_0_1_row" class="FieldRow" hittest="false">
+						<Label id="st_field_0_1_0" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_1_0}" />
+						<Label id="st_field_0_1_1" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_1_1}" />
+						<Label id="st_field_0_1_2" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_1_2}" />
+						<Label id="st_field_0_1_3" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_1_3}" />
+						<Label id="st_field_0_1_4" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_1_4}" />
+						<Label id="st_field_0_1_5" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_1_5}" />
+					</Panel>
+				</Panel>
+				<Panel id="st_field_0_2" class="Field hidden" hittest="false">
+					<Label id="st_field_0_2_lbl" class="Seg lbl FieldLabel" hittest="false" text="{s:st_field_0_2_lbl}" />
+					<Panel id="st_field_0_2_row" class="FieldRow" hittest="false">
+						<Label id="st_field_0_2_0" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_2_0}" />
+						<Label id="st_field_0_2_1" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_2_1}" />
+						<Label id="st_field_0_2_2" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_2_2}" />
+						<Label id="st_field_0_2_3" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_2_3}" />
+						<Label id="st_field_0_2_4" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_2_4}" />
+						<Label id="st_field_0_2_5" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_2_5}" />
+					</Panel>
+				</Panel>
+				<Panel id="st_field_0_3" class="Field hidden" hittest="false">
+					<Label id="st_field_0_3_lbl" class="Seg lbl FieldLabel" hittest="false" text="{s:st_field_0_3_lbl}" />
+					<Panel id="st_field_0_3_row" class="FieldRow" hittest="false">
+						<Label id="st_field_0_3_0" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_3_0}" />
+						<Label id="st_field_0_3_1" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_3_1}" />
+						<Label id="st_field_0_3_2" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_3_2}" />
+						<Label id="st_field_0_3_3" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_3_3}" />
+						<Label id="st_field_0_3_4" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_3_4}" />
+						<Label id="st_field_0_3_5" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_0_3_5}" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel id="st_fields_1" class="Fields hidden" hittest="false">
+				<Panel id="st_field_1_0" class="Field hidden" hittest="false">
+					<Label id="st_field_1_0_lbl" class="Seg lbl FieldLabel" hittest="false" text="{s:st_field_1_0_lbl}" />
+					<Panel id="st_field_1_0_row" class="FieldRow" hittest="false">
+						<Label id="st_field_1_0_0" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_0_0}" />
+						<Label id="st_field_1_0_1" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_0_1}" />
+						<Label id="st_field_1_0_2" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_0_2}" />
+						<Label id="st_field_1_0_3" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_0_3}" />
+						<Label id="st_field_1_0_4" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_0_4}" />
+						<Label id="st_field_1_0_5" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_0_5}" />
+					</Panel>
+				</Panel>
+				<Panel id="st_field_1_1" class="Field hidden" hittest="false">
+					<Label id="st_field_1_1_lbl" class="Seg lbl FieldLabel" hittest="false" text="{s:st_field_1_1_lbl}" />
+					<Panel id="st_field_1_1_row" class="FieldRow" hittest="false">
+						<Label id="st_field_1_1_0" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_1_0}" />
+						<Label id="st_field_1_1_1" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_1_1}" />
+						<Label id="st_field_1_1_2" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_1_2}" />
+						<Label id="st_field_1_1_3" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_1_3}" />
+						<Label id="st_field_1_1_4" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_1_4}" />
+						<Label id="st_field_1_1_5" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_1_5}" />
+					</Panel>
+				</Panel>
+				<Panel id="st_field_1_2" class="Field hidden" hittest="false">
+					<Label id="st_field_1_2_lbl" class="Seg lbl FieldLabel" hittest="false" text="{s:st_field_1_2_lbl}" />
+					<Panel id="st_field_1_2_row" class="FieldRow" hittest="false">
+						<Label id="st_field_1_2_0" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_2_0}" />
+						<Label id="st_field_1_2_1" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_2_1}" />
+						<Label id="st_field_1_2_2" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_2_2}" />
+						<Label id="st_field_1_2_3" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_2_3}" />
+						<Label id="st_field_1_2_4" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_2_4}" />
+						<Label id="st_field_1_2_5" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_2_5}" />
+					</Panel>
+				</Panel>
+				<Panel id="st_field_1_3" class="Field hidden" hittest="false">
+					<Label id="st_field_1_3_lbl" class="Seg lbl FieldLabel" hittest="false" text="{s:st_field_1_3_lbl}" />
+					<Panel id="st_field_1_3_row" class="FieldRow" hittest="false">
+						<Label id="st_field_1_3_0" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_3_0}" />
+						<Label id="st_field_1_3_1" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_3_1}" />
+						<Label id="st_field_1_3_2" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_3_2}" />
+						<Label id="st_field_1_3_3" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_3_3}" />
+						<Label id="st_field_1_3_4" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_3_4}" />
+						<Label id="st_field_1_3_5" class="Seg val FieldVal hidden" hittest="false" text="{s:st_field_1_3_5}" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+
+		<Panel id="st_left" class="Slot SlotLeft hidden" hittest="false">
+			<Panel id="st_left_0" class="Row hidden" hittest="false">
+				<Label id="st_left_0_0" class="Seg hidden" hittest="false" text="{s:st_left_0_0}" />
+				<Label id="st_left_0_1" class="Seg hidden" hittest="false" text="{s:st_left_0_1}" />
+				<Label id="st_left_0_2" class="Seg hidden" hittest="false" text="{s:st_left_0_2}" />
+				<Label id="st_left_0_3" class="Seg hidden" hittest="false" text="{s:st_left_0_3}" />
+			</Panel>
+			<Panel id="st_left_1" class="Row hidden" hittest="false">
+				<Label id="st_left_1_0" class="Seg hidden" hittest="false" text="{s:st_left_1_0}" />
+				<Label id="st_left_1_1" class="Seg hidden" hittest="false" text="{s:st_left_1_1}" />
+				<Label id="st_left_1_2" class="Seg hidden" hittest="false" text="{s:st_left_1_2}" />
+				<Label id="st_left_1_3" class="Seg hidden" hittest="false" text="{s:st_left_1_3}" />
+			</Panel>
+			<Panel id="st_left_2" class="Row hidden" hittest="false">
+				<Label id="st_left_2_0" class="Seg hidden" hittest="false" text="{s:st_left_2_0}" />
+				<Label id="st_left_2_1" class="Seg hidden" hittest="false" text="{s:st_left_2_1}" />
+				<Label id="st_left_2_2" class="Seg hidden" hittest="false" text="{s:st_left_2_2}" />
+				<Label id="st_left_2_3" class="Seg hidden" hittest="false" text="{s:st_left_2_3}" />
+			</Panel>
+			<Panel id="st_left_3" class="Row hidden" hittest="false">
+				<Label id="st_left_3_0" class="Seg hidden" hittest="false" text="{s:st_left_3_0}" />
+				<Label id="st_left_3_1" class="Seg hidden" hittest="false" text="{s:st_left_3_1}" />
+				<Label id="st_left_3_2" class="Seg hidden" hittest="false" text="{s:st_left_3_2}" />
+				<Label id="st_left_3_3" class="Seg hidden" hittest="false" text="{s:st_left_3_3}" />
+			</Panel>
+			<Panel id="st_left_4" class="Row hidden" hittest="false">
+				<Label id="st_left_4_0" class="Seg hidden" hittest="false" text="{s:st_left_4_0}" />
+				<Label id="st_left_4_1" class="Seg hidden" hittest="false" text="{s:st_left_4_1}" />
+				<Label id="st_left_4_2" class="Seg hidden" hittest="false" text="{s:st_left_4_2}" />
+				<Label id="st_left_4_3" class="Seg hidden" hittest="false" text="{s:st_left_4_3}" />
+			</Panel>
+			<Panel id="st_left_5" class="Row hidden" hittest="false">
+				<Label id="st_left_5_0" class="Seg hidden" hittest="false" text="{s:st_left_5_0}" />
+				<Label id="st_left_5_1" class="Seg hidden" hittest="false" text="{s:st_left_5_1}" />
+				<Label id="st_left_5_2" class="Seg hidden" hittest="false" text="{s:st_left_5_2}" />
+				<Label id="st_left_5_3" class="Seg hidden" hittest="false" text="{s:st_left_5_3}" />
+			</Panel>
+			<Panel id="st_left_6" class="Row hidden" hittest="false">
+				<Label id="st_left_6_0" class="Seg hidden" hittest="false" text="{s:st_left_6_0}" />
+				<Label id="st_left_6_1" class="Seg hidden" hittest="false" text="{s:st_left_6_1}" />
+				<Label id="st_left_6_2" class="Seg hidden" hittest="false" text="{s:st_left_6_2}" />
+				<Label id="st_left_6_3" class="Seg hidden" hittest="false" text="{s:st_left_6_3}" />
+			</Panel>
+		</Panel>
+
+		<Panel id="st_right" class="Slot SlotRight hidden" hittest="false">
+			<Panel id="st_right_0" class="Row hidden" hittest="false">
+				<Label id="st_right_0_0" class="Seg hidden" hittest="false" text="{s:st_right_0_0}" />
+				<Label id="st_right_0_1" class="Seg hidden" hittest="false" text="{s:st_right_0_1}" />
+			</Panel>
+			<Panel id="st_right_1" class="Row hidden" hittest="false">
+				<Label id="st_right_1_0" class="Seg hidden" hittest="false" text="{s:st_right_1_0}" />
+				<Label id="st_right_1_1" class="Seg hidden" hittest="false" text="{s:st_right_1_1}" />
+			</Panel>
+			<Panel id="st_right_2" class="Row hidden" hittest="false">
+				<Label id="st_right_2_0" class="Seg hidden" hittest="false" text="{s:st_right_2_0}" />
+				<Label id="st_right_2_1" class="Seg hidden" hittest="false" text="{s:st_right_2_1}" />
+			</Panel>
+			<Panel id="st_right_3" class="Row hidden" hittest="false">
+				<Label id="st_right_3_0" class="Seg hidden" hittest="false" text="{s:st_right_3_0}" />
+				<Label id="st_right_3_1" class="Seg hidden" hittest="false" text="{s:st_right_3_1}" />
+			</Panel>
+			<Panel id="st_right_4" class="Row hidden" hittest="false">
+				<Label id="st_right_4_0" class="Seg hidden" hittest="false" text="{s:st_right_4_0}" />
+				<Label id="st_right_4_1" class="Seg hidden" hittest="false" text="{s:st_right_4_1}" />
+			</Panel>
+			<Panel id="st_right_5" class="Row hidden" hittest="false">
+				<Label id="st_right_5_0" class="Seg hidden" hittest="false" text="{s:st_right_5_0}" />
+				<Label id="st_right_5_1" class="Seg hidden" hittest="false" text="{s:st_right_5_1}" />
+			</Panel>
+			<Panel id="st_right_6" class="Row hidden" hittest="false">
+				<Label id="st_right_6_0" class="Seg hidden" hittest="false" text="{s:st_right_6_0}" />
+				<Label id="st_right_6_1" class="Seg hidden" hittest="false" text="{s:st_right_6_1}" />
+			</Panel>
+			<Panel id="st_right_7" class="Row hidden" hittest="false">
+				<Label id="st_right_7_0" class="Seg hidden" hittest="false" text="{s:st_right_7_0}" />
+				<Label id="st_right_7_1" class="Seg hidden" hittest="false" text="{s:st_right_7_1}" />
+			</Panel>
+			<Panel id="st_right_8" class="Row hidden" hittest="false">
+				<Label id="st_right_8_0" class="Seg hidden" hittest="false" text="{s:st_right_8_0}" />
+				<Label id="st_right_8_1" class="Seg hidden" hittest="false" text="{s:st_right_8_1}" />
+			</Panel>
+		</Panel>
+
+	</Panel>
+</root>
