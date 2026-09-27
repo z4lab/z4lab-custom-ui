@@ -13,6 +13,8 @@
 	           st_field_#_#_lbl  field label
 	           st_field_#_#_#    field values: key (keyboard letter), dim, colours, fonts
 	  fonts    font-mono ('Noto Mono'), font-digit (Stratum2 with fixed-width digits) - any segment
+	  menu     st_menu (hidden), st_menu_tabs (hidden), st_menu_tab_# (hidden, on = active tab),
+	           st_menu_item_# (hidden), st_menu_prev / st_menu_next (off = first/last page)
 */
 
 .SurfTimerHud
@@ -286,6 +288,201 @@
 .Seg.font-digit
 {
 	font-family: 'Stratum2 Bold Monodigit', Stratum2;
+}
+
+/* ---- Popup menu (st_menu) - clickable, the player is in cursor mode while it's open ---- */
+
+.Menu
+{
+	flow-children: down;
+	width: 460px;
+	horizontal-align: center;
+	vertical-align: center;
+	padding: 14px 16px 12px 16px;
+	background-color: #0a0c10eb;
+	border-top: 2px solid #9CC7F5;
+	font-family: Stratum2, 'Arial Unicode MS';
+}
+
+.MenuHeader
+{
+	flow-children: right;
+	width: 100%;
+}
+
+.MenuTitle
+{
+	width: fill-parent-flow( 1.0 );
+	vertical-align: center;
+	font-size: 17px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #E6EEF8;
+}
+
+.MenuClose
+{
+	width: 26px;
+	height: 26px;
+	border: 1px solid #ffffff26;
+	transition-property: background-color;
+	transition-duration: 0.1s;
+}
+
+.MenuClose:hover
+{
+	background-color: #F07167;
+}
+
+.MenuCloseLabel
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 13px;
+	font-weight: bold;
+	color: #8C9BAA;
+}
+
+.MenuClose:hover .MenuCloseLabel
+{
+	color: #1b1b1b;
+}
+
+.MenuTabs
+{
+	flow-children: right;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 8px;
+}
+
+.MenuTab
+{
+	width: fill-parent-flow( 1.0 );
+	margin-right: 4px;
+	padding: 6px 0px;
+	background-color: #ffffff0d;
+	transition-property: background-color;
+	transition-duration: 0.1s;
+}
+
+.MenuTab:hover
+{
+	background-color: #ffffff21;
+}
+
+.MenuTab.on
+{
+	background-color: #9CC7F5;
+}
+
+.MenuTabLabel
+{
+	horizontal-align: center;
+	font-size: 11px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #8C9BAA;
+}
+
+.MenuTab.on .MenuTabLabel
+{
+	color: #1b2733;
+}
+
+/* Rows: number | text | sub (fills the row) | right-aligned value */
+.MenuItem
+{
+	flow-children: right;
+	width: 100%;
+	margin-bottom: 3px;
+	padding: 8px 10px;
+	background-color: #ffffff0a;
+	border-left: 2px solid #00000000;
+	transition-property: background-color;
+	transition-duration: 0.1s;
+}
+
+.MenuItem:hover
+{
+	background-color: #9CC7F52e;
+	border-left: 2px solid #9CC7F5;
+}
+
+.MenuNum
+{
+	width: 22px;
+	vertical-align: center;
+	font-size: 12px;
+	color: #8C9BAA;
+}
+
+.MenuText
+{
+	vertical-align: center;
+	font-size: 15px;
+	color: #E6EEF8;
+}
+
+.MenuSub
+{
+	width: fill-parent-flow( 1.0 );
+	vertical-align: center;
+	margin-left: 8px;
+	font-size: 12px;
+	color: #8C9BAA;
+}
+
+.MenuRight
+{
+	vertical-align: center;
+	margin-left: 8px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #EFC761;
+}
+
+.MenuFooter
+{
+	flow-children: right;
+	width: 100%;
+	margin-top: 8px;
+}
+
+.MenuPage
+{
+	padding: 5px 12px;
+	border: 1px solid #ffffff26;
+	transition-property: background-color;
+	transition-duration: 0.1s;
+}
+
+.MenuPage:hover
+{
+	background-color: #ffffff1f;
+}
+
+/* First / last page - still clickable, the server ignores it */
+.MenuPage.off
+{
+	opacity: 0.3;
+}
+
+.MenuPageButtonLabel
+{
+	font-size: 12px;
+	color: #E6EEF8;
+}
+
+.MenuPageLabel
+{
+	width: fill-parent-flow( 1.0 );
+	vertical-align: center;
+	text-align: center;
+	font-size: 12px;
+	color: #8C9BAA;
 }
 
 /* ---- Utility ---- */

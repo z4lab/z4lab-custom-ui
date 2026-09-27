@@ -1,8 +1,9 @@
 # SurfTimer HUD addon
 
-A Workshop addon that contains **only generic, server-driven HUD slots**. You publish it once; after
-that, all HUD content, colours and visibility are controlled from the plugin
-(`src/ST-Player/CustomHud.cs` and `PlayerHUD.cs`), with no republish needed.
+A Workshop addon that contains **only generic, server-driven HUD slots** and a **clickable popup
+menu**. You publish it once; after that, all content, colours and visibility are controlled from the
+SurfTimer plugin (`src/ST-Player/CustomHud.cs`, `PlayerHUD.cs` and `src/ST-Player/Menu/`), with no
+republish needed.
 
 ## Layout
 
@@ -31,8 +32,28 @@ The centre slot holds the field rows `st_fields_0..1`. Each row has fields `st_f
 each field has a label `st_field_R_F_lbl` and value segments `st_field_R_F_0..5`. The plugin decides
 what each field shows and which ones are `wide` (see `PlayerHud.SendCenter`).
 
-The slots have room to spare, so more content fits without a republish. The XML is regular:
-regenerate it with a script rather than editing it by hand if you ever change the sizes.
+The slots have room to spare, so more content fits without a republish. The XML is regular, so it's
+generated: change sizes or add elements in `tools/generate_layout.ps1` and run it from the repo root
+(`./tools/generate_layout.ps1`) instead of editing `surftimer_hud.xml` by hand.
+
+## Popup menu
+
+`st_menu` is a popup in the screen centre, used by the plugin's pickers (`!replay`, `!spec`). While
+it's open the plugin puts the player in cursor mode (`SetInputCaptureEnabled`), and every `<Button>`
+reports its id to the server when clicked (`OnCustomHudClicked`).
+
+| Id | Element | Content |
+|---|---|---|
+| `st_menu_title` | Label | menu title |
+| `st_menu_close` | Button | closes the popup |
+| `st_menu_tabs` | Panel | tab row, hidden for single-tab menus |
+| `st_menu_tab_0..5` | Button, label `st_menu_tab_N_lbl` | tabs; `on` marks the active one |
+| `st_menu_item_0..7` | Button, labels `_num`, `_text`, `_sub`, `_right` | the rows of the current page |
+| `st_menu_prev` / `st_menu_next` | Button | paging; `off` dims them on the first/last page |
+| `st_menu_page` | Label | "Page 1 / 3" |
+
+The counts must match `CustomHud.MenuTabCount` / `MenuItemCount`. Labels inside buttons have
+`hittest="false"` so the click lands on the button.
 
 While you spectate, the HUD shows the spectated player's data, or the replay bot's.
 
@@ -63,6 +84,8 @@ While you spectate, the HUD shows the spectated player's data, or the replay bot
 - **Centre:**
   - fields: `hidden`, and `wide`, which spans two fields;
   - field values: `key` (keyboard letter spacing) and `dim` (a released key).
+- **Menu:** `hidden` on `st_menu`, the tab row, tabs and rows; `on` on the active tab; `off` on
+  Prev/Next at the first/last page.
 
 Everything starts hidden, so nothing shows until the plugin fills it. The HUD also hides itself
 while the scoreboard or end-of-match screen is open.
