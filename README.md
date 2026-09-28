@@ -84,8 +84,8 @@ While you spectate, the HUD shows the spectated player's data, or the replay bot
 - **Centre:**
   - fields: `hidden`, and `wide`, which spans two fields;
   - field values: `key` (keyboard letter spacing) and `dim` (a released key).
-- **Menu:** `hidden` on `st_menu`, the tab row, tabs and rows; `on` on the active tab; `off` on
-  Prev/Next at the first/last page.
+- **Menu:** `hidden` on `st_menu`, the tab row, tabs and rows; `on` on the active tab; `info` on
+  rows that can't be picked (no hover); `off` on Prev/Next at the first/last page.
 
 Everything starts hidden, so nothing shows until the plugin fills it. The HUD also hides itself
 while the scoreboard or end-of-match screen is open.

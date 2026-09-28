@@ -65,11 +65,15 @@ GridSlot 'right' 'SlotRight' 9 2
 # (OnCustomHudClicked); the labels inside them don't take clicks themselves.
 L "`t`t<Panel id=`"st_menu`" class=`"Menu hidden`">"
 L "`t`t`t<Panel class=`"MenuHeader`" hittest=`"false`">"
+L "`t`t`t`t<Button id=`"st_menu_back`" class=`"MenuBack hidden`">"
+L "`t`t`t`t`t<Label class=`"MenuBackLabel`" hittest=`"false`" text=`"&lt;`" />"
+L "`t`t`t`t</Button>"
 L "`t`t`t`t<Label id=`"st_menu_title`" class=`"MenuTitle`" hittest=`"false`" text=`"{s:st_menu_title}`" />"
 L "`t`t`t`t<Button id=`"st_menu_close`" class=`"MenuClose`">"
 L "`t`t`t`t`t<Label class=`"MenuCloseLabel`" hittest=`"false`" text=`"X`" />"
 L "`t`t`t`t</Button>"
 L "`t`t`t</Panel>"
+L "`t`t`t<Label id=`"st_menu_status`" class=`"MenuStatus hidden`" hittest=`"false`" text=`"{s:st_menu_status}`" />"
 L "`t`t`t<Panel id=`"st_menu_tabs`" class=`"MenuTabs hidden`" hittest=`"false`">"
 for ($t = 0; $t -lt $MenuTabs; $t++) {
 	L "`t`t`t`t<Button id=`"st_menu_tab_$t`" class=`"MenuTab hidden`">"

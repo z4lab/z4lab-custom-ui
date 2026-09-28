@@ -14,7 +14,7 @@
 	           st_field_#_#_#    field values: key (keyboard letter), dim, colours, fonts
 	  fonts    font-mono ('Noto Mono'), font-digit (Stratum2 with fixed-width digits) - any segment
 	  menu     st_menu (hidden), st_menu_tabs (hidden), st_menu_tab_# (hidden, on = active tab),
-	           st_menu_item_# (hidden), st_menu_prev / st_menu_next (off = first/last page)
+	           st_menu_item_# (hidden, info = not clickable), st_menu_prev / st_menu_next (off = first/last page)
 */
 
 .SurfTimerHud
@@ -295,7 +295,7 @@
 .Menu
 {
 	flow-children: down;
-	width: 460px;
+	width: 540px;
 	horizontal-align: center;
 	vertical-align: center;
 	padding: 14px 16px 12px 16px;
@@ -319,6 +319,36 @@
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	color: #E6EEF8;
+}
+
+/* Back to the previous page (sub-pages only) */
+.MenuBack
+{
+	width: 26px;
+	height: 26px;
+	margin-right: 10px;
+	border: 1px solid #ffffff26;
+	transition-property: background-color;
+	transition-duration: 0.1s;
+}
+
+.MenuBack:hover
+{
+	background-color: #9CC7F5;
+}
+
+.MenuBackLabel
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 13px;
+	font-weight: bold;
+	color: #8C9BAA;
+}
+
+.MenuBack:hover .MenuBackLabel
+{
+	color: #1b2733;
 }
 
 .MenuClose
@@ -347,6 +377,17 @@
 .MenuClose:hover .MenuCloseLabel
 {
 	color: #1b1b1b;
+}
+
+/* Result of the last action, e.g. "Tier set to 4" */
+.MenuStatus
+{
+	width: 100%;
+	margin-top: 8px;
+	padding: 5px 8px;
+	font-size: 12px;
+	color: #9CC7F5;
+	background-color: #9CC7F51a;
 }
 
 .MenuTabs
@@ -409,6 +450,43 @@
 {
 	background-color: #9CC7F52e;
 	border-left: 2px solid #9CC7F5;
+}
+
+/* Info rows (e.g. profile stats) can't be picked - no hover highlight */
+.MenuItem.info,
+.MenuItem.info:hover
+{
+	background-color: #ffffff0a;
+	border-left: 2px solid #00000000;
+}
+
+/* Dangerous actions (they open a confirmation page) */
+.MenuItem.danger .MenuText
+{
+	color: #F07167;
+}
+
+.MenuItem.danger:hover
+{
+	background-color: #F071672e;
+	border-left: 2px solid #F07167;
+}
+
+/* Toggles - the right value is an on / off chip */
+.MenuItem.on .MenuRight
+{
+	padding: 1px 8px;
+	font-size: 11px;
+	color: #1b2733;
+	background-color: #8FD18B;
+}
+
+.MenuItem.off .MenuRight
+{
+	padding: 1px 8px;
+	font-size: 11px;
+	color: #8C9BAA;
+	background-color: #ffffff14;
 }
 
 .MenuNum

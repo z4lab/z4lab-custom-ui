@@ -215,11 +215,15 @@
 
 		<Panel id="st_menu" class="Menu hidden">
 			<Panel class="MenuHeader" hittest="false">
+				<Button id="st_menu_back" class="MenuBack hidden">
+					<Label class="MenuBackLabel" hittest="false" text="&lt;" />
+				</Button>
 				<Label id="st_menu_title" class="MenuTitle" hittest="false" text="{s:st_menu_title}" />
 				<Button id="st_menu_close" class="MenuClose">
 					<Label class="MenuCloseLabel" hittest="false" text="X" />
 				</Button>
 			</Panel>
+			<Label id="st_menu_status" class="MenuStatus hidden" hittest="false" text="{s:st_menu_status}" />
 			<Panel id="st_menu_tabs" class="MenuTabs hidden" hittest="false">
 				<Button id="st_menu_tab_0" class="MenuTab hidden">
 					<Label id="st_menu_tab_0_lbl" class="MenuTabLabel" hittest="false" text="{s:st_menu_tab_0_lbl}" />
