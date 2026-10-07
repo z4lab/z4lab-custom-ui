@@ -1,11 +1,23 @@
-# SurfTimer HUD addon
+<h1 align="center">
+    <br>
+    <img src="assets/logo.svg" width="128px" alt="z4lab logo"/>
+    <br>
+	SurfTimer HUD addon
+</h1>
+
+<p align="center">Custom HUD and popup menu for <b>SurfTimer for CS2</b></p>
+
+<hr>
 
 A Workshop addon that contains **only generic, server-driven HUD slots** and a **clickable popup
 menu**. You publish it once; after that, all content, colours and visibility are controlled from the
 SurfTimer plugin (`src/ST-Player/CustomHud.cs`, `PlayerHUD.cs` and `src/ST-Player/Menu/`), with no
 republish needed.
 
-## Layout
+Click a section to expand it.
+
+<details>
+<summary><b>Layout</b></summary>
 
 `custom_hud_layout` labels only support plain `text`, with no HTML, according to Valve's
 `point_script.d.ts`. So every piece of text is its own label, with its own text (a dialog variable
@@ -36,7 +48,10 @@ The slots have room to spare, so more content fits without a republish. The XML 
 generated: change sizes or add elements in `tools/generate_layout.ps1` and run it from the repo root
 (`./tools/generate_layout.ps1`) instead of editing `surftimer_hud.xml` by hand.
 
-## Popup menu
+</details>
+
+<details>
+<summary><b>Popup menu</b></summary>
 
 `st_menu` is a popup in the screen centre, used by the plugin's pickers (`!replay`, `!spec`). While
 it's open the plugin puts the player in cursor mode (`SetInputCaptureEnabled`), and every `<Button>`
@@ -96,7 +111,10 @@ like "Stage 7" don't cover the HUD.
 
 A new screen region, a bigger grid, or a new colour class is the only thing that needs a republish.
 
-## Compile
+</details>
+
+<details>
+<summary><b>Compile</b></summary>
 
 Copy `panorama/` into `content/csgo_addons/<addon>/`, then run:
 
@@ -109,7 +127,10 @@ CSS as `.vcss_c`. You can also compile from the Workshop Tools Asset Browser.
 
 Ignore `Leaked KeyValues blocks: …` at the end: Valve's own demo addon prints the same line.
 
-## Publish (once)
+</details>
+
+<details>
+<summary><b>Publish (once)</b></summary>
 
 1. Upload the addon with the Workshop Tools and note the **addon ID**.
 2. On the server, install **MultiAddonManager** and add the ID to `mm_client_extra_addons`, so every
@@ -121,7 +142,10 @@ Ignore `Leaked KeyValues blocks: …` at the end: Valve's own demo addon prints 
      `[custom_hud] Layout xml is an invalid resource name`. The plugin precaches the compiled
      `.vxml` itself.
 
-## Testing as a regular player
+</details>
+
+<details>
+<summary><b>Testing as a regular player</b></summary>
 
 Your own PC has the addon locally, in `game/csgo_addons/<addon>`, because you built it. That can
 hide problems other players would hit. To test like a regular player:
@@ -138,3 +162,5 @@ Even better, have a second player who has never had the addon join. Then check:
 - **The HUD shows up** for them.
 - **Two clients see different values**, which confirms per-player updates.
 - **Texts survive another player joining.** The plugin already forces a full resend on every join.
+
+</details>
