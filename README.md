@@ -32,7 +32,7 @@ The style follows CS2's own HUD:
 
 | Slot id | Region | Structure | Plugin content |
 |---|---|---|---|
-| `st_top` | top centre | grid, 2 rows × 8 segments | row 0: map, tier, stage or bonus, practice/repeat flags. Row 1 (smaller): PB, rank, WR, or the replay being played |
+| `st_top` | top centre | grid, 4 rows × 8 segments | row 0: map, tier, stage or bonus, practice/repeat flags. Smaller rows: row 1 PB, rank, WR, or the replay being played; row 2 the map chooser (time left, vote, next map); row 3 free for addons |
 | `st_center` | bottom centre | 2 rows × 4 fields, see below | row 0: timer (double-width) and speed. Row 1: prespeed, keys and sync |
 | `st_left` | left side | grid, 7 × 4 | splits of the current map run vs PB |
 | `st_right` | right side | grid, 9 × 2 | players spectating you |
