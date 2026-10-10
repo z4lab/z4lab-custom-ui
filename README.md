@@ -37,7 +37,7 @@ The style follows CS2's own HUD:
 | `st_center` | bottom centre | 2 rows × 4 fields, see below | row 0: timer (double-width) and speed. Row 1: prespeed, keys and sync |
 | `st_left` | left side | grid, 7 × 4 | splits of the current map run vs PB |
 | `st_right` | right side | grid, 9 × 2 | players spectating you |
-| `st_mid` | screen centre | 3 lines: `st_mid_0` above the crosshair, `st_mid_1` at it, `st_mid_2` below | line 0: the player's speed (opt-in, `!options` › HUD › Center speed); all three: messages (later, e.g. admin messages) |
+| `st_mid` | screen centre | 3 lines: `st_mid_0` above the crosshair, `st_mid_1` at it, `st_mid_2` below | line 0: the player's speed (opt-in, `!options` › HUD › Center HUD); all three: messages (later, e.g. admin messages) |
 
 The grid slots use `st_<slot>`, then `st_<slot>_<row>`, then `st_<slot>_<row>_<segment>`, with sizes
 that must match `CustomHud.Grid`.
