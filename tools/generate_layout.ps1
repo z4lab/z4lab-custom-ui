@@ -61,6 +61,13 @@ L ""
 GridSlot 'left' 'SlotLeft' 7 4
 GridSlot 'right' 'SlotRight' 9 2
 
+# Middle: three lines around the crosshair - above (the speed), at and below it (messages). Each is centred on the
+# screen and moved up / down by its mpos-# class.
+L "`t`t<Panel id=`"st_mid`" class=`"SlotMid hidden`" hittest=`"false`">"
+for ($m = 0; $m -lt 3; $m++) { Seg "`t`t`t" "st_mid_$m" "Seg MidSeg hidden" }
+L "`t`t</Panel>"
+L ""
+
 # Popup menu (last, so it's drawn over the HUD). Buttons report clicks to the server by their id
 # (OnCustomHudClicked); the labels inside them don't take clicks themselves.
 L "`t`t<Panel id=`"st_menu`" class=`"Menu hidden`">"

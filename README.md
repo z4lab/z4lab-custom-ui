@@ -28,7 +28,8 @@ The style follows CS2's own HUD:
 - small caps grey labels and units;
 - bands that fade at both ends for the top bar rows;
 - dark fields with an accent edge in the bottom centre;
-- killfeed-style rows for the side panels.
+- killfeed-style rows for the side panels;
+- the [Nord](https://www.nordtheme.com) colours, with a team accent: CT blue, T yellow.
 
 | Slot id | Region | Structure | Plugin content |
 |---|---|---|---|
@@ -36,6 +37,7 @@ The style follows CS2's own HUD:
 | `st_center` | bottom centre | 2 rows × 4 fields, see below | row 0: timer (double-width) and speed. Row 1: prespeed, keys and sync |
 | `st_left` | left side | grid, 7 × 4 | splits of the current map run vs PB |
 | `st_right` | right side | grid, 9 × 2 | players spectating you |
+| `st_mid` | screen centre | 3 lines: `st_mid_0` above the crosshair, `st_mid_1` at it, `st_mid_2` below | line 0: the player's speed (opt-in, `!options` › HUD › Center speed); all three: messages (later, e.g. admin messages) |
 
 The grid slots use `st_<slot>`, then `st_<slot>_<row>`, then `st_<slot>_<row>_<segment>`, with sizes
 that must match `CustomHud.Grid`.
@@ -75,6 +77,8 @@ While you spectate, the HUD shows the spectated player's data, or the replay bot
 **Classes the server toggles per player** (all documented at the top of `surftimer_hud.css`):
 - **Slots:**
   - `hidden`;
+  - `team-ct` / `team-t`, the accent colour (field borders, side rows, menu): the shown player's team. Also on
+    `st_mid` and `st_menu`;
   - `shift-0` … `shift-10` for the vertical position. The step sizes are:
     - top bar: 40px from the top, plus 20px per step;
     - centre: 100px from the bottom, plus 20px per step;
@@ -92,13 +96,18 @@ While you spectate, the HUD shows the spectated player's data, or the replay bot
   - kind: `lbl` (label), `val` (value) or `unit`
   - size: `sm`, `md`, `lg` or `xl`
   - colours: `col-blue`, `col-purple`, `col-green`, `col-indigo`, `col-gold`, `col-grey`, `col-red`
-  - the speed gradient: `spd-0` … `spd-8`
+  - the speed gradient: `spd-0` … `spd-8` (Nord: deep blue, frost, green, yellow, orange, red)
+  - static Nord colours: `nc-snow`, `nc-frost`, `nc-teal`, `nc-blue`, `nc-deep`, `nc-red`, `nc-orange`,
+    `nc-yellow`, `nc-green`, `nc-purple` (a player's speed colour, gain / loss)
   - fonts: `font-mono` (Noto Mono, shipped with CS2) or `font-digit` (Stratum2 with fixed-width
     digits; a legacy font that may fall back to regular Stratum2). The plugin picks one with
     `CustomHud.MonoFontClass`.
 - **Centre:**
   - fields: `hidden`, and `wide`, which spans two fields;
   - field values: `key` (keyboard letter spacing) and `dim` (a released key).
+- **Middle** (`st_mid_0..2`): `hidden`, `msize-1` … `msize-5` (18-60px), `mpos-0` … `mpos-40` (vertical
+  offset, 10px per step, `mpos-20` = at the crosshair - the plugin places line 0 / 1 / 2 at 14 / 20 / 26 plus the
+  player's offset), the colours and fonts above.
 - **Menu:** `hidden` on `st_menu`, the tab row, tabs and rows; `on` on the active tab; `info` on
   rows that can't be picked (no hover); `off` on Prev/Next at the first/last page.
 

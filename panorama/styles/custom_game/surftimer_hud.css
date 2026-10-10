@@ -1,17 +1,24 @@
 /*
 	SurfTimer server-driven HUD, styled after CS2's own HUD (Stratum2, big bold values, small caps
-	labels, no boxes). Everything below is toggled per player by the server:
-	  slots    (st_*)            hidden, shift-0 .. shift-10 (vertical position)
+	labels, no boxes), in the Nord palette (nordtheme.com) with a team accent (CT blue / T yellow).
+	Everything below is toggled per player by the server:
+	  slots    (st_*)            hidden, shift-0 .. shift-10 (vertical position),
+	                             team-ct | team-t (accent colour - borders, menu; none = CT)
 	  rows     (st_*_#)          hidden, band (fading background band - top bar),
 	                             sub (smaller secondary row - top bar), hdr (header row - side panels)
 	  segments (st_*_#_#)        hidden
 	                             kind:  lbl (small caps label) | val (value) | unit (small caps unit)
 	                             size:  sm | md | lg | xl  (values only)
 	                             color: col-blue, col-purple, col-green, col-indigo, col-gold, col-grey, col-red,
-	                                    spd-0 .. spd-8 (speed gradient)
+	                                    spd-0 .. spd-8 (speed gradient),
+	                                    nc-snow, nc-frost, nc-teal, nc-blue, nc-deep, nc-red, nc-orange, nc-yellow,
+	                                    nc-green, nc-purple (static Nord colours)
 	  center   st_fields_#, st_field_#_#       hidden; fields also wide (spans two fields)
 	           st_field_#_#_lbl  field label
 	           st_field_#_#_#    field values: key (keyboard letter), dim, colours, fonts
+	  middle   st_mid (hidden, team-*), st_mid_0 / _1 / _2: above / at / below the crosshair - hidden,
+	           msize-1 .. msize-5, mpos-0 .. mpos-40 (vertical offset, 20 = the crosshair, 10px per step),
+	           colours, fonts
 	  fonts    font-mono ('Noto Mono'), font-digit (Stratum2 with fixed-width digits) - any segment
 	  menu     st_menu (hidden), st_menu_tabs (hidden), st_menu_tab_# (hidden, on = active tab),
 	           st_menu_item_# (hidden, info = not clickable), st_menu_prev / st_menu_next (off = first/last page)
@@ -47,7 +54,7 @@
 {
 	font-family: Stratum2, 'Arial Unicode MS';
 	font-size: 20px;
-	color: #E6EEF8;
+	color: #ECEFF4;
 	vertical-align: bottom;
 	margin-right: 8px;
 	text-shadow: 0px 1px 3px 1.0 #000000cc;
@@ -61,7 +68,7 @@
 	font-weight: bold;
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	color: #8C9BAA;
+	color: #A7B1C2;
 	margin-right: 6px;
 	margin-bottom: 4px;
 }
@@ -77,7 +84,7 @@
 	font-weight: bold;
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	color: #8C9BAA;
+	color: #A7B1C2;
 	margin-bottom: 4px;
 }
 
@@ -105,7 +112,7 @@
 
 .SlotTop .Row.band
 {
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #00000000 ), color-stop( 0.2, #0000009c ), color-stop( 0.8, #0000009c ), to( #00000000 ) );
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2E344000 ), color-stop( 0.2, #2E3440b8 ), color-stop( 0.8, #2E3440b8 ), to( #2E344000 ) );
 }
 
 /* Secondary row under the top bar (PB / rank / WR) - smaller and lighter */
@@ -117,7 +124,7 @@
 
 .SlotTop .Row.sub.band
 {
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #00000000 ), color-stop( 0.2, #00000073 ), color-stop( 0.8, #00000073 ), to( #00000000 ) );
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2E344000 ), color-stop( 0.2, #2E344088 ), color-stop( 0.8, #2E344088 ), to( #2E344000 ) );
 }
 
 .Row.sub .Seg.lbl,
@@ -166,7 +173,7 @@
 	height: 62px;
 	margin: 0px 4px;
 	padding-top: 8px;
-	background-color: #0000008c;
+	background-color: #2E3440a6;
 	border-bottom: 2px solid #9CC7F5;
 }
 
@@ -216,14 +223,14 @@
 {
 	horizontal-align: left;
 	border-left: 2px solid #9CC7F5;
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #000000b4 ), to( #00000000 ) );
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2E3440c8 ), to( #2E344000 ) );
 }
 
 .SlotRight .Row
 {
 	horizontal-align: right;
 	border-right: 2px solid #9CC7F5;
-	background-color: gradient( linear, 100% 0%, 0% 0%, from( #000000b4 ), to( #00000000 ) );
+	background-color: gradient( linear, 100% 0%, 0% 0%, from( #2E3440c8 ), to( #2E344000 ) );
 }
 
 .SlotRight .Row .Seg
@@ -290,6 +297,108 @@
 	font-family: 'Stratum2 Bold Monodigit', Stratum2;
 }
 
+/* ---- Team accent: CT blue (the rules above) or T yellow - team-t on the slot roots and the menu ---- */
+
+.SlotCenter.team-t .Field { border-bottom: 2px solid #E0B95E; }
+.SlotLeft.team-t .Row { border-left: 2px solid #E0B95E; }
+.SlotRight.team-t .Row { border-right: 2px solid #E0B95E; }
+.SlotLeft.team-t .Row.hdr,
+.SlotRight.team-t .Row.hdr
+{
+	border-left: 0px solid #00000000;
+	border-right: 0px solid #00000000;
+}
+.Menu.team-t { border-top: 2px solid #E0B95E; }
+.Menu.team-t .MenuBack:hover { background-color: #E0B95E; }
+.Menu.team-t .MenuStatus
+{
+	color: #E0B95E;
+	background-color: #E0B95E1a;
+}
+.Menu.team-t .MenuTab.on { background-color: #E0B95E; }
+.Menu.team-t .MenuItem:hover
+{
+	background-color: #E0B95E2e;
+	border-left: 2px solid #E0B95E;
+}
+.Menu.team-t .MenuItem.info:hover
+{
+	background-color: #3B425299;
+	border-left: 2px solid #00000000;
+}
+.Menu.team-t .MenuItem.danger:hover
+{
+	background-color: #BF616A2e;
+	border-left: 2px solid #BF616A;
+}
+
+/* ---- Middle: three lines around the crosshair - above (st_mid_0, the speed), at (st_mid_1), below (st_mid_2) ---- */
+
+.SlotMid
+{
+	width: 100%;
+	height: 100%;
+}
+
+.Seg.MidSeg
+{
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	margin: 0px;
+	font-weight: bold;
+	text-shadow: 0px 1px 4px 1.5 #2E3440ee;
+}
+
+.Seg.MidSeg.msize-1 { font-size: 18px; }
+.Seg.MidSeg.msize-2 { font-size: 24px; }
+.Seg.MidSeg.msize-3 { font-size: 32px; }
+.Seg.MidSeg.msize-4 { font-size: 44px; }
+.Seg.MidSeg.msize-5 { font-size: 60px; }
+
+/* Vertical offset from the crosshair: 10px per step, mpos-20 = at the crosshair */
+.Seg.MidSeg.mpos-0 { transform: translatey( -200px ); }
+.Seg.MidSeg.mpos-1 { transform: translatey( -190px ); }
+.Seg.MidSeg.mpos-2 { transform: translatey( -180px ); }
+.Seg.MidSeg.mpos-3 { transform: translatey( -170px ); }
+.Seg.MidSeg.mpos-4 { transform: translatey( -160px ); }
+.Seg.MidSeg.mpos-5 { transform: translatey( -150px ); }
+.Seg.MidSeg.mpos-6 { transform: translatey( -140px ); }
+.Seg.MidSeg.mpos-7 { transform: translatey( -130px ); }
+.Seg.MidSeg.mpos-8 { transform: translatey( -120px ); }
+.Seg.MidSeg.mpos-9 { transform: translatey( -110px ); }
+.Seg.MidSeg.mpos-10 { transform: translatey( -100px ); }
+.Seg.MidSeg.mpos-11 { transform: translatey( -90px ); }
+.Seg.MidSeg.mpos-12 { transform: translatey( -80px ); }
+.Seg.MidSeg.mpos-13 { transform: translatey( -70px ); }
+.Seg.MidSeg.mpos-14 { transform: translatey( -60px ); }
+.Seg.MidSeg.mpos-15 { transform: translatey( -50px ); }
+.Seg.MidSeg.mpos-16 { transform: translatey( -40px ); }
+.Seg.MidSeg.mpos-17 { transform: translatey( -30px ); }
+.Seg.MidSeg.mpos-18 { transform: translatey( -20px ); }
+.Seg.MidSeg.mpos-19 { transform: translatey( -10px ); }
+.Seg.MidSeg.mpos-20 { transform: translatey( 0px ); }
+.Seg.MidSeg.mpos-21 { transform: translatey( 10px ); }
+.Seg.MidSeg.mpos-22 { transform: translatey( 20px ); }
+.Seg.MidSeg.mpos-23 { transform: translatey( 30px ); }
+.Seg.MidSeg.mpos-24 { transform: translatey( 40px ); }
+.Seg.MidSeg.mpos-25 { transform: translatey( 50px ); }
+.Seg.MidSeg.mpos-26 { transform: translatey( 60px ); }
+.Seg.MidSeg.mpos-27 { transform: translatey( 70px ); }
+.Seg.MidSeg.mpos-28 { transform: translatey( 80px ); }
+.Seg.MidSeg.mpos-29 { transform: translatey( 90px ); }
+.Seg.MidSeg.mpos-30 { transform: translatey( 100px ); }
+.Seg.MidSeg.mpos-31 { transform: translatey( 110px ); }
+.Seg.MidSeg.mpos-32 { transform: translatey( 120px ); }
+.Seg.MidSeg.mpos-33 { transform: translatey( 130px ); }
+.Seg.MidSeg.mpos-34 { transform: translatey( 140px ); }
+.Seg.MidSeg.mpos-35 { transform: translatey( 150px ); }
+.Seg.MidSeg.mpos-36 { transform: translatey( 160px ); }
+.Seg.MidSeg.mpos-37 { transform: translatey( 170px ); }
+.Seg.MidSeg.mpos-38 { transform: translatey( 180px ); }
+.Seg.MidSeg.mpos-39 { transform: translatey( 190px ); }
+.Seg.MidSeg.mpos-40 { transform: translatey( 200px ); }
+
 /* ---- Popup menu (st_menu) - clickable, the player is in cursor mode while it's open ---- */
 
 .Menu
@@ -299,7 +408,7 @@
 	horizontal-align: center;
 	vertical-align: center;
 	padding: 14px 16px 12px 16px;
-	background-color: #0a0c10eb;
+	background-color: #2E3440f0;
 	border-top: 2px solid #9CC7F5;
 	font-family: Stratum2, 'Arial Unicode MS';
 }
@@ -318,7 +427,7 @@
 	font-weight: bold;
 	letter-spacing: 1px;
 	text-transform: uppercase;
-	color: #E6EEF8;
+	color: #ECEFF4;
 }
 
 /* Back to the previous page (sub-pages only) */
@@ -343,12 +452,12 @@
 	vertical-align: center;
 	font-size: 13px;
 	font-weight: bold;
-	color: #8C9BAA;
+	color: #A7B1C2;
 }
 
 .MenuBack:hover .MenuBackLabel
 {
-	color: #1b2733;
+	color: #2E3440;
 }
 
 .MenuClose
@@ -362,7 +471,7 @@
 
 .MenuClose:hover
 {
-	background-color: #F07167;
+	background-color: #BF616A;
 }
 
 .MenuCloseLabel
@@ -371,7 +480,7 @@
 	vertical-align: center;
 	font-size: 13px;
 	font-weight: bold;
-	color: #8C9BAA;
+	color: #A7B1C2;
 }
 
 .MenuClose:hover .MenuCloseLabel
@@ -425,12 +534,12 @@
 	font-weight: bold;
 	letter-spacing: 1px;
 	text-transform: uppercase;
-	color: #8C9BAA;
+	color: #A7B1C2;
 }
 
 .MenuTab.on .MenuTabLabel
 {
-	color: #1b2733;
+	color: #2E3440;
 }
 
 /* Rows: number | text | sub (fills the row) | right-aligned value */
@@ -440,7 +549,7 @@
 	width: 100%;
 	margin-bottom: 3px;
 	padding: 8px 10px;
-	background-color: #ffffff0a;
+	background-color: #3B425299;
 	border-left: 2px solid #00000000;
 	transition-property: background-color;
 	transition-duration: 0.1s;
@@ -456,20 +565,20 @@
 .MenuItem.info,
 .MenuItem.info:hover
 {
-	background-color: #ffffff0a;
+	background-color: #3B425299;
 	border-left: 2px solid #00000000;
 }
 
 /* Dangerous actions (they open a confirmation page) */
 .MenuItem.danger .MenuText
 {
-	color: #F07167;
+	color: #BF616A;
 }
 
 .MenuItem.danger:hover
 {
-	background-color: #F071672e;
-	border-left: 2px solid #F07167;
+	background-color: #BF616A2e;
+	border-left: 2px solid #BF616A;
 }
 
 /* Toggles - the right value is an on / off chip */
@@ -477,15 +586,15 @@
 {
 	padding: 1px 8px;
 	font-size: 11px;
-	color: #1b2733;
-	background-color: #8FD18B;
+	color: #2E3440;
+	background-color: #A3BE8C;
 }
 
 .MenuItem.off .MenuRight
 {
 	padding: 1px 8px;
 	font-size: 11px;
-	color: #8C9BAA;
+	color: #A7B1C2;
 	background-color: #ffffff14;
 }
 
@@ -494,14 +603,14 @@
 	width: 22px;
 	vertical-align: center;
 	font-size: 12px;
-	color: #8C9BAA;
+	color: #A7B1C2;
 }
 
 .MenuText
 {
 	vertical-align: center;
 	font-size: 15px;
-	color: #E6EEF8;
+	color: #ECEFF4;
 }
 
 .MenuSub
@@ -510,7 +619,7 @@
 	vertical-align: center;
 	margin-left: 8px;
 	font-size: 12px;
-	color: #8C9BAA;
+	color: #A7B1C2;
 }
 
 .MenuRight
@@ -519,7 +628,7 @@
 	margin-left: 8px;
 	font-size: 14px;
 	font-weight: bold;
-	color: #EFC761;
+	color: #EBCB8B;
 }
 
 .MenuFooter
@@ -551,7 +660,7 @@
 .MenuPageButtonLabel
 {
 	font-size: 12px;
-	color: #E6EEF8;
+	color: #ECEFF4;
 }
 
 .MenuPageLabel
@@ -560,7 +669,7 @@
 	vertical-align: center;
 	text-align: center;
 	font-size: 12px;
-	color: #8C9BAA;
+	color: #A7B1C2;
 }
 
 /* ---- Utility ---- */
@@ -572,24 +681,37 @@
 
 /* ---- Colours (after the kinds so they also apply to labels) ---- */
 
-.Seg.col-blue { color: #9CC7F5; }
-.Seg.col-purple { color: #C9A2F2; }
-.Seg.col-green { color: #8FD18B; }
-.Seg.col-indigo { color: #A9B7F2; }
-.Seg.col-gold { color: #EFC761; }
-.Seg.col-grey { color: #8C9BAA; }
-.Seg.col-red { color: #F07167; }
+.Seg.col-blue { color: #88C0D0; }
+.Seg.col-purple { color: #B48EAD; }
+.Seg.col-green { color: #A3BE8C; }
+.Seg.col-indigo { color: #81A1C1; }
+.Seg.col-gold { color: #EBCB8B; }
+.Seg.col-grey { color: #7B88A1; }
+.Seg.col-red { color: #BF616A; }
 
-/* Speed gradient in 9 steps (blue > green > yellow > orange > red), matches GetSpeedColorGradient */
-.Seg.spd-0 { color: #4FC3F7; }
-.Seg.spd-1 { color: #3EB1AE; }
-.Seg.spd-2 { color: #2E9F65; }
-.Seg.spd-3 { color: #96CF32; }
-.Seg.spd-4 { color: #FFFF00; }
-.Seg.spd-5 { color: #FFD200; }
-.Seg.spd-6 { color: #FFA500; }
-.Seg.spd-7 { color: #FF5200; }
-.Seg.spd-8 { color: #FF0000; }
+/* Speed gradient in 9 steps through the Nord colours (blue > frost > green > yellow > orange > red), matches
+   GetSpeedColorGradient */
+.Seg.spd-0 { color: #5E81AC; }
+.Seg.spd-1 { color: #81A1C1; }
+.Seg.spd-2 { color: #88C0D0; }
+.Seg.spd-3 { color: #8FBCBB; }
+.Seg.spd-4 { color: #A3BE8C; }
+.Seg.spd-5 { color: #EBCB8B; }
+.Seg.spd-6 { color: #D08770; }
+.Seg.spd-7 { color: #C77A6F; }
+.Seg.spd-8 { color: #BF616A; }
+
+/* Static Nord colours (a player's speed colour, gain / loss) */
+.Seg.nc-snow { color: #ECEFF4; }
+.Seg.nc-frost { color: #88C0D0; }
+.Seg.nc-teal { color: #8FBCBB; }
+.Seg.nc-blue { color: #81A1C1; }
+.Seg.nc-deep { color: #5E81AC; }
+.Seg.nc-red { color: #BF616A; }
+.Seg.nc-orange { color: #D08770; }
+.Seg.nc-yellow { color: #EBCB8B; }
+.Seg.nc-green { color: #A3BE8C; }
+.Seg.nc-purple { color: #B48EAD; }
 
 /* Released key - after the colours so it always wins */
-.Seg.dim { color: #FFFFFF38; }
+.Seg.dim { color: #ECEFF438; }
