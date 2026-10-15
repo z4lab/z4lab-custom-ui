@@ -2,37 +2,37 @@
 	SurfTimer server-driven HUD, styled after CS2's own HUD (Stratum2, big bold values, small caps
 	labels, no boxes), in the Nord palette (nordtheme.com) with a team accent (CT blue / T yellow).
 	Everything below is toggled per player by the server:
-	  slots    (st_*)            hidden, shift-0 .. shift-10 (vertical position),
+	  slots    (z4_*)            hidden, shift-0 .. shift-10 (vertical position),
 	                             team-ct | team-t (accent colour - borders, menu; none = CT)
-	  rows     (st_*_#)          hidden, band (fading background band - top bar),
+	  rows     (z4_*_#)          hidden, band (fading background band - top bar),
 	                             sub (smaller secondary row - top bar), hdr (header row - side panels)
-	  segments (st_*_#_#)        hidden
+	  segments (z4_*_#_#)        hidden
 	                             kind:  lbl (small caps label) | val (value) | unit (small caps unit)
 	                             size:  sm | md | lg | xl  (values only)
 	                             color: col-blue, col-purple, col-green, col-indigo, col-gold, col-grey, col-red,
 	                                    spd-0 .. spd-8 (speed gradient),
 	                                    nc-snow, nc-frost, nc-teal, nc-blue, nc-deep, nc-red, nc-orange, nc-yellow,
 	                                    nc-green, nc-purple (static Nord colours)
-	  center   st_fields_#, st_field_#_#       hidden; fields also wide (spans two fields)
-	           st_field_#_#_lbl  field label
-	           st_field_#_#_#    field values: key (keyboard letter), dim, colours, fonts
-	  middle   st_mid (hidden, team-*), st_mid_0 / _1 / _2: above / at / below the crosshair - hidden,
+	  center   z4_fields_#, z4_field_#_#       hidden; fields also wide (spans two fields)
+	           z4_field_#_#_lbl  field label
+	           z4_field_#_#_#    field values: key (keyboard letter), dim, colours, fonts
+	  middle   z4_mid (hidden, team-*), z4_mid_0 / _1 / _2: above / at / below the crosshair - hidden,
 	           msize-1 .. msize-5, mpos-0 .. mpos-40 (vertical offset, 20 = the crosshair, 10px per step),
 	           colours, fonts
 	  fonts    font-mono ('Noto Mono'), font-digit (Stratum2 with fixed-width digits) - any segment
-	  menu     st_menu (hidden), st_menu_tabs (hidden), st_menu_tab_# (hidden, on = active tab),
-	           st_menu_item_# (hidden, info = not clickable), st_menu_prev / st_menu_next (off = first/last page)
+	  menu     z4_menu (hidden), z4_menu_tabs (hidden), z4_menu_tab_# (hidden, on = active tab),
+	           z4_menu_item_# (hidden, info = not clickable), z4_menu_prev / z4_menu_next (off = first/last page)
 */
 
-.SurfTimerHud
+.Z4CustomUi
 {
 	width: 100%;
 	height: 100%;
 }
 
 /* Don't cover the scoreboard / end of match screens */
-.HUD_SCOREBOARD_VISIBLE .SurfTimerHud,
-.HUD_ENDOFMATCH_VISIBLE .SurfTimerHud
+.HUD_SCOREBOARD_VISIBLE .Z4CustomUi,
+.HUD_ENDOFMATCH_VISIBLE .Z4CustomUi
 {
 	visibility: collapse;
 }
@@ -332,7 +332,7 @@
 	border-left: 2px solid #BF616A;
 }
 
-/* ---- Middle: three lines around the crosshair - above (st_mid_0, the speed), at (st_mid_1), below (st_mid_2) ---- */
+/* ---- Middle: three lines around the crosshair - above (z4_mid_0, the speed), at (z4_mid_1), below (z4_mid_2) ---- */
 
 .SlotMid
 {
@@ -399,7 +399,7 @@
 .Seg.MidSeg.mpos-39 { transform: translatey( 190px ); }
 .Seg.MidSeg.mpos-40 { transform: translatey( 200px ); }
 
-/* ---- Popup menu (st_menu) - clickable, the player is in cursor mode while it's open ---- */
+/* ---- Popup menu (z4_menu) - clickable, the player is in cursor mode while it's open ---- */
 
 .Menu
 {

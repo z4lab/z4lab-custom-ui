@@ -2,10 +2,10 @@
     <br>
     <img src="assets/logo.svg" width="128px" alt="z4lab logo"/>
     <br>
-	SurfTimer HUD addon
+	z4lab custom UI addon
 </h1>
 
-<p align="center">Custom HUD and popup menu for <b>SurfTimer for CS2</b></p>
+<p align="center">Custom HUD, popup menu and paint dot for <b>SurfTimer for CS2</b></p>
 
 <hr>
 
@@ -33,52 +33,52 @@ The style follows CS2's own HUD:
 
 | Slot id | Region | Structure | Plugin content |
 |---|---|---|---|
-| `st_top` | top centre | grid, 4 rows × 8 segments | row 0: map, tier, stage or bonus, practice/repeat flags. Smaller rows: row 1 PB, rank, WR, or the replay being played; row 2 the map chooser (time left, vote, next map); row 3 free for addons |
-| `st_center` | bottom centre | 2 rows × 4 fields, see below | row 0: timer (double-width) and speed. Row 1: prespeed, keys and sync |
-| `st_left` | left side | grid, 7 × 4 | splits of the current map run vs PB |
-| `st_right` | right side | grid, 9 × 2 | players spectating you |
-| `st_mid` | screen centre | 3 lines: `st_mid_0` above the crosshair, `st_mid_1` at it, `st_mid_2` below | line 0: the player's speed (opt-in, `!options` › HUD › Center HUD); all three: messages (later, e.g. admin messages) |
+| `z4_top` | top centre | grid, 4 rows × 8 segments | row 0: map, tier, stage or bonus, practice/repeat flags. Smaller rows: row 1 PB, rank, WR, or the replay being played; row 2 the map chooser (time left, vote, next map); row 3 free for addons |
+| `z4_center` | bottom centre | 2 rows × 4 fields, see below | row 0: timer (double-width) and speed. Row 1: prespeed, keys and sync |
+| `z4_left` | left side | grid, 7 × 4 | splits of the current map run vs PB |
+| `z4_right` | right side | grid, 9 × 2 | players spectating you |
+| `z4_mid` | screen centre | 3 lines: `z4_mid_0` above the crosshair, `z4_mid_1` at it, `z4_mid_2` below | line 0: the player's speed (opt-in, `!options` › HUD › Center HUD); all three: messages (later, e.g. admin messages) |
 
-The grid slots use `st_<slot>`, then `st_<slot>_<row>`, then `st_<slot>_<row>_<segment>`, with sizes
+The grid slots use `z4_<slot>`, then `z4_<slot>_<row>`, then `z4_<slot>_<row>_<segment>`, with sizes
 that must match `CustomHud.Grid`.
 
-The centre slot holds the field rows `st_fields_0..1`. Each row has fields `st_field_R_0..3`, and
-each field has a label `st_field_R_F_lbl` and value segments `st_field_R_F_0..5`. The plugin decides
+The centre slot holds the field rows `z4_fields_0..1`. Each row has fields `z4_field_R_0..3`, and
+each field has a label `z4_field_R_F_lbl` and value segments `z4_field_R_F_0..5`. The plugin decides
 what each field shows and which ones are `wide` (see `PlayerHud.SendCenter`).
 
 The slots have room to spare, so more content fits without a republish. The XML is regular, so it's
 generated: change sizes or add elements in `tools/generate_layout.ps1` and run it from the repo root
-(`./tools/generate_layout.ps1`) instead of editing `surftimer_hud.xml` by hand.
+(`./tools/generate_layout.ps1`) instead of editing `z4lab_custom_ui.xml` by hand.
 
 </details>
 
 <details>
 <summary><b>Popup menu</b></summary>
 
-`st_menu` is a popup in the screen centre, used by the plugin's pickers (`!replay`, `!spec`). While
+`z4_menu` is a popup in the screen centre, used by the plugin's pickers (`!replay`, `!spec`). While
 it's open the plugin puts the player in cursor mode (`SetInputCaptureEnabled`), and every `<Button>`
 reports its id to the server when clicked (`OnCustomHudClicked`).
 
 | Id | Element | Content |
 |---|---|---|
-| `st_menu_title` | Label | menu title |
-| `st_menu_close` | Button | closes the popup |
-| `st_menu_tabs` | Panel | tab row, hidden for single-tab menus |
-| `st_menu_tab_0..5` | Button, label `st_menu_tab_N_lbl` | tabs; `on` marks the active one |
-| `st_menu_item_0..7` | Button, labels `_num`, `_text`, `_sub`, `_right` | the rows of the current page |
-| `st_menu_prev` / `st_menu_next` | Button | paging; `off` dims them on the first/last page |
-| `st_menu_page` | Label | "Page 1 / 3" |
+| `z4_menu_title` | Label | menu title |
+| `z4_menu_close` | Button | closes the popup |
+| `z4_menu_tabs` | Panel | tab row, hidden for single-tab menus |
+| `z4_menu_tab_0..5` | Button, label `z4_menu_tab_N_lbl` | tabs; `on` marks the active one |
+| `z4_menu_item_0..7` | Button, labels `_num`, `_text`, `_sub`, `_right` | the rows of the current page |
+| `z4_menu_prev` / `z4_menu_next` | Button | paging; `off` dims them on the first/last page |
+| `z4_menu_page` | Label | "Page 1 / 3" |
 
 The counts must match `CustomHud.MenuTabCount` / `MenuItemCount`. Labels inside buttons have
 `hittest="false"` so the click lands on the button.
 
 While you spectate, the HUD shows the spectated player's data, or the replay bot's.
 
-**Classes the server toggles per player** (all documented at the top of `surftimer_hud.css`):
+**Classes the server toggles per player** (all documented at the top of `z4lab_custom_ui.css`):
 - **Slots:**
   - `hidden`;
   - `team-ct` / `team-t`, the accent colour (field borders, side rows, menu): the shown player's team. Also on
-    `st_mid` and `st_menu`;
+    `z4_mid` and `z4_menu`;
   - `shift-0` … `shift-10` for the vertical position. The step sizes are:
     - top bar: 40px from the top, plus 20px per step;
     - centre: 100px from the bottom, plus 20px per step;
@@ -105,10 +105,10 @@ While you spectate, the HUD shows the spectated player's data, or the replay bot
 - **Centre:**
   - fields: `hidden`, and `wide`, which spans two fields;
   - field values: `key` (keyboard letter spacing) and `dim` (a released key).
-- **Middle** (`st_mid_0..2`): `hidden`, `msize-1` … `msize-5` (18-60px), `mpos-0` … `mpos-40` (vertical
+- **Middle** (`z4_mid_0..2`): `hidden`, `msize-1` … `msize-5` (18-60px), `mpos-0` … `mpos-40` (vertical
   offset, 10px per step, `mpos-20` = at the crosshair - the plugin places line 0 / 1 / 2 at 14 / 20 / 26 plus the
   player's offset), the colours and fonts above.
-- **Menu:** `hidden` on `st_menu`, the tab row, tabs and rows; `on` on the active tab; `info` on
+- **Menu:** `hidden` on `z4_menu`, the tab row, tabs and rows; `on` on the active tab; `info` on
   rows that can't be picked (no hover); `off` on Prev/Next at the first/last page.
 
 Everything starts hidden, so nothing shows until the plugin fills it. The HUD also hides itself
@@ -125,14 +125,24 @@ A new screen region, a bigger grid, or a new colour class is the only thing that
 <details>
 <summary><b>Compile</b></summary>
 
-Copy `panorama/` into `content/csgo_addons/<addon>/`, then run:
+Copy `panorama/`, `materials/` and `particles/` into `content/csgo_addons/<addon>/`, then run:
 
 ```
-"<CS2>\game\bin\win64\resourcecompiler.exe" -nop4 -i "<CS2>\content\csgo_addons\<addon>\panorama\layout\custom_game\surftimer_hud.xml"
+"<CS2>\game\bin\win64\resourcecompiler.exe" -nop4 -i "<CS2>\content\csgo_addons\<addon>\panorama\layout\custom_game\z4lab_custom_ui.xml"
 ```
 
-This produces `game/csgo_addons/<addon>/panorama/layout/custom_game/surftimer_hud.vxml_c`, and the
+This produces `game/csgo_addons/<addon>/panorama/layout/custom_game/z4lab_custom_ui.vxml_c`, and the
 CSS as `.vcss_c`. You can also compile from the Workshop Tools Asset Browser.
+
+The paint dot (SurfTimer.Paint) is compiled the same way:
+
+```
+"<CS2>\game\bin\win64\resourcecompiler.exe" -nop4 -i "<CS2>\content\csgo_addons\<addon>\particles\z4lab\paint_dot.vpcf"
+```
+
+That also compiles its texture (`materials/z4lab/paint_dot.vtex`, a white soft round dot from `paint_dot.png`). The
+particle is one sprite that lies flat along control point 0's forward axis. Its color comes from control point 1
+(0-255) and its size in units from control point 2's x. Open it in the particle editor to check it.
 
 Ignore `Leaked KeyValues blocks: …` at the end: Valve's own demo addon prints the same line.
 
@@ -146,7 +156,7 @@ Ignore `Leaked KeyValues blocks: …` at the end: Valve's own demo addon prints 
    client downloads it on connect.
 3. In `cfg/SurfTimer/timer_settings.json`:
    - set `"custom_hud_enabled": true`;
-   - set `"custom_hud_layout": "panorama/layout/custom_game/surftimer_hud.xml"`. Use the
+   - set `"custom_hud_layout": "panorama/layout/custom_game/z4lab_custom_ui.xml"`. Use the
      **source name, `.xml`**. Clients reject `.vxml` with
      `[custom_hud] Layout xml is an invalid resource name`. The plugin precaches the compiled
      `.vxml` itself.
