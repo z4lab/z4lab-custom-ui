@@ -3,7 +3,7 @@
 	_class = "CParticleSystemDefinition"
 	m_nMaxParticles = 1
 	m_nInitialParticles = 1
-	m_flConstantRadius = 8.0
+	m_flConstantRadius = 4.0
 	m_ConstantColor = [ 255, 255, 255, 255 ]
 	m_bShouldSort = false
 	m_Renderers =
@@ -39,22 +39,6 @@
 		},
 		{
 			_class = "C_INIT_NormalAlignToCP"
-		},
-		// Radius = half the dot size (control point 2's x, the plugin's DataCPValue)
-		{
-			_class = "C_INIT_InitFloat"
-			m_nOutputField = 3
-			m_InputValue =
-			{
-				m_nType = "PF_TYPE_CONTROL_POINT_COMPONENT"
-				m_nControlPoint = 2
-				m_nVectorComponent = 0
-				m_nMapType = "PF_MAP_TYPE_REMAP"
-				m_flInput0 = 0.0
-				m_flInput1 = 1000.0
-				m_flOutput0 = 0.0
-				m_flOutput1 = 500.0
-			}
 		},
 		// Color = control point 1 (the plugin's Tint, 0-255)
 		{

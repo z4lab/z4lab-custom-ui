@@ -139,15 +139,16 @@ By hand: copy `panorama/`, `materials/` and `particles/` into `content/csgo_addo
 This produces `game/csgo_addons/<addon>/panorama/layout/custom_game/z4lab_custom_ui.vxml_c`, and the
 CSS as `.vcss_c`. You can also compile from the Workshop Tools Asset Browser.
 
-The paint dot (SurfTimer.Paint) is compiled the same way:
+The paint dots (SurfTimer.Paint) are compiled the same way, one particle per size:
 
 ```
-"<CS2>\game\bin\win64\resourcecompiler.exe" -nop4 -i "<CS2>\content\csgo_addons\<addon>\particles\z4lab\paint_dot.vpcf"
+"<CS2>\game\bin\win64\resourcecompiler.exe" -nop4 -i "<CS2>\content\csgo_addons\<addon>\particles\z4lab\paint_dot_medium.vpcf"
 ```
 
-That also compiles its texture (`materials/z4lab/paint_dot.vtex`, a white soft round dot from `paint_dot.png`). The
-particle is one sprite that lies flat along control point 0's forward axis. Its color comes from control point 1
-(0-255) and its size in units from control point 2's x. Open it in the particle editor to check it.
+That also compiles their texture (`materials/z4lab/paint_dot.vtex`, a white soft round dot from `paint_dot.png`).
+`paint_dot_small`, `_medium` and `_large` are the same sprite, lying flat along control point 0's forward axis, with
+a radius of 4, 8 and 16 units. The color comes from control point 1 (0-255). The file names must match the size names
+in SurfTimer.Paint (`Sizes`).
 
 Ignore `Leaked KeyValues blocks: …` at the end: Valve's own demo addon prints the same line.
 
