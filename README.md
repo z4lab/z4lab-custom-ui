@@ -125,7 +125,12 @@ A new screen region, a bigger grid, or a new colour class is the only thing that
 <details>
 <summary><b>Compile</b></summary>
 
-Copy `panorama/`, `materials/` and `particles/` into `content/csgo_addons/<addon>/`, then run:
+`.\build.ps1` (PowerShell) does all of it: it copies `panorama/`, `materials/` and `particles/` into
+`content/csgo_addons/z4lab_custom_ui/` and compiles the layout, the texture and the particle. It uses the default
+Steam install; pass `-Cs2Dir` for another CS2 folder and `-Addon` for another addon name. The addon has to exist in the
+Workshop Tools first.
+
+By hand: copy `panorama/`, `materials/` and `particles/` into `content/csgo_addons/<addon>/`, then run:
 
 ```
 "<CS2>\game\bin\win64\resourcecompiler.exe" -nop4 -i "<CS2>\content\csgo_addons\<addon>\panorama\layout\custom_game\z4lab_custom_ui.xml"
