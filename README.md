@@ -126,7 +126,7 @@ A new screen region, a bigger grid, or a new colour class is the only thing that
 <summary><b>Compile</b></summary>
 
 `.\build.ps1` (PowerShell) does all of it: it copies `panorama/`, `materials/` and `particles/` into
-`content/csgo_addons/z4lab_custom_ui/` and compiles the layout, the texture and the particle. It uses the default
+`content/csgo_addons/z4lab_custom_ui/` and compiles the layout, the decal material and the particles. It uses the default
 Steam install; pass `-Cs2Dir` for another CS2 folder and `-Addon` for another addon name. The addon has to exist in the
 Workshop Tools first.
 
@@ -139,16 +139,18 @@ By hand: copy `panorama/`, `materials/` and `particles/` into `content/csgo_addo
 This produces `game/csgo_addons/<addon>/panorama/layout/custom_game/z4lab_custom_ui.vxml_c`, and the
 CSS as `.vcss_c`. You can also compile from the Workshop Tools Asset Browser.
 
-The paint dots (SurfTimer.Paint) are compiled the same way, one particle per size:
+The paint dots (SurfTimer.Paint) are compiled the same way: the material first, then one particle per size:
 
 ```
+"<CS2>\game\bin\win64\resourcecompiler.exe" -nop4 -i "<CS2>\content\csgo_addons\<addon>\materials\z4lab\paint_dot.vmat"
 "<CS2>\game\bin\win64\resourcecompiler.exe" -nop4 -i "<CS2>\content\csgo_addons\<addon>\particles\z4lab\paint_dot_medium.vpcf"
 ```
 
-That also compiles their texture (`materials/z4lab/paint_dot.vtex`, a white soft round dot from `paint_dot.png`).
-`paint_dot_small`, `_medium` and `_large` are the same sprite, lying flat along control point 0's forward axis, with
-a radius of 4, 8 and 16 units. The color comes from control point 1 (0-255). The file names must match the size names
-in SurfTimer.Paint (`Sizes`).
+`materials/z4lab/paint_dot.vmat` is a decal (`csgo_projected_decals`, like CS2's blood decals): `paint_dot.png` is
+plain white, and `paint_dot_mask.png` is the soft round dot. `paint_dot_small`, `_medium` and `_large` project it onto
+the surface along control point 0's forward axis (the surface normal), with a radius of 4, 8 and 16 units, so it
+follows the surface and wraps over edges like spray paint. The particle color tints it, from control point 1 (0-255).
+The file names must match the size names in SurfTimer.Paint (`Sizes`).
 
 Ignore `Leaked KeyValues blocks: …` at the end: Valve's own demo addon prints the same line.
 

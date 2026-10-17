@@ -1,0 +1,8 @@
+// Paint dot decal (SurfTimer.Paint): projected onto the surface by the paint_dot_* particles, tinted by the particle color
+"Layer0"
+{
+	"shader"	"csgo_projected_decals.vfx"
+	"g_bFogEnabled"	"1"
+	"TextureColor"	"materials/z4lab/paint_dot.png"
+	"TextureTranslucency"	"materials/z4lab/paint_dot_mask.png"
+}

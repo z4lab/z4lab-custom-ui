@@ -28,10 +28,11 @@ foreach ($dir in "panorama", "materials", "particles") {
 }
 Write-Host "Copied panorama\, materials\, particles\ to $content"
 
-# Compile: the layouts (each pulls in its CSS), then textures, then particles (they reference the textures)
+# Compile: the layouts (each pulls in its CSS), then textures and materials, then particles (they reference the materials)
 $sources = @(
 	Get-ChildItem (Join-Path $content "panorama\layout") -Recurse -Filter *.xml | Sort-Object FullName
 	Get-ChildItem (Join-Path $content "materials") -Recurse -Filter *.vtex | Sort-Object FullName
+	Get-ChildItem (Join-Path $content "materials") -Recurse -Filter *.vmat | Sort-Object FullName
 	Get-ChildItem (Join-Path $content "particles") -Recurse -Filter *.vpcf | Sort-Object FullName
 )
 $failed = $false

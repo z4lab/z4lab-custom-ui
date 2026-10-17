@@ -8,14 +8,18 @@
 	m_bShouldSort = false
 	m_Renderers =
 	[
+		// A decal projected onto the surface along the particle's normal (the surface normal) - wraps over edges like spray
 		{
-			_class = "C_OP_RenderSprites"
-			m_nOrientationType = "PARTICLE_ORIENTATION_ALIGN_TO_PARTICLE_NORMAL"
-			m_bBlendFramesSeq0 = false
-			m_vecTexturesInput =
+			_class = "C_OP_RenderProjected"
+			m_bOrientToNormal = true
+			m_bEnableProjectedDepthControls = true
+			m_flMinProjectionDepth = -6.0
+			m_flMaxProjectionDepth = 6.0
+			m_bProjectWater = false
+			m_vecProjectedMaterials =
 			[
 				{
-					m_hTexture = resource:"materials/z4lab/paint_dot.vtex"
+					m_hMaterial = resource:"materials/z4lab/paint_dot.vmat"
 				},
 			]
 		},
